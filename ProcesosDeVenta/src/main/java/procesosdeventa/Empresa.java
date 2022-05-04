@@ -1,4 +1,4 @@
-package com.javacomp.procesosdeventa;
+package procesosdeventa;
 
 public class Empresa extends Persona {
     

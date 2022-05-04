@@ -4,14 +4,9 @@
  */
 package ventanagrafica;
 
-import com.javacomp.procesosdeventa.Administrador;
-import java.io.BufferedReader;
+import procesosdeventa.Administrador;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
@@ -47,6 +42,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -92,6 +89,15 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                 jTextField1FocusLost(evt);
             }
         });
+
+        jButton2.setText("Registrarse");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("¿No tienes una cuenta?");
 
         jMenu2.setText("Ayuda");
         jMenu2.addActionListener(new java.awt.event.ActionListener() {
@@ -143,9 +149,13 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -161,7 +171,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jLabel3))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,14 +190,13 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     Scanner cuentasCliente;
     ArrayList<Administrador> admins = new ArrayList<Administrador>();
     
-    public static ArrayList<Administrador> crearListaAdmins() throws FileNotFoundException, UnsupportedEncodingException, IOException {
-        FileInputStream cuentasAdmin = new FileInputStream("recursos/CuentasAdmin.txt");
-        InputStreamReader streamAdmin = new InputStreamReader(cuentasAdmin, "ISO-8859-1");
-        BufferedReader cuentas = new BufferedReader(streamAdmin);
+    public static ArrayList<Administrador> crearListaAdmins() throws FileNotFoundException {
+        File cuentasAdmin = new File("recursos/CuentasAdmin.txt");
+        Scanner cuentas = new Scanner(cuentasAdmin);
         ArrayList<Administrador> admins = new ArrayList<Administrador>(); 
-        while ((cuentas.readLine()) != null) {
-            String correoi = cuentas.readLine();
-            String contri = cuentas.readLine();
+        while (cuentas.hasNext()) {
+            String correoi = cuentas.nextLine();
+            String contri = cuentas.nextLine();
             Administrador admini = new Administrador(correoi, contri);
             admins.add(admini);
         }
@@ -278,6 +291,10 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             "Acerca de...", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -319,8 +336,10 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

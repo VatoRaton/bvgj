@@ -1,4 +1,4 @@
-package com.javacomp.procesosdeventa;
+package procesosdeventa;
 
 import java.time.LocalDate;
 
