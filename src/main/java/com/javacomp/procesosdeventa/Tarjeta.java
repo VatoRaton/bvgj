@@ -5,10 +5,10 @@ import java.time.LocalDate;
 public class Tarjeta {
     
     private String nombre;
-    private int numeroTarjeta;
+    private String numeroTarjeta;
     private LocalDate fechaCaducidad;
 
-    public Tarjeta(String nombre, int numeroTarjeta, LocalDate fechaCaducidad) {
+    public Tarjeta(String nombre, String numeroTarjeta, LocalDate fechaCaducidad) {
         this.nombre = nombre;
         this.numeroTarjeta = numeroTarjeta;
         this.fechaCaducidad = fechaCaducidad;
@@ -22,11 +22,11 @@ public class Tarjeta {
         this.nombre = nombre;
     }
 
-    public int getNumeroTarjeta() {
+    public String getNumeroTarjeta() {
         return numeroTarjeta;
     }
 
-    public void setNumeroTarjeta(int numeroTarjeta) {
+    public void setNumeroTarjeta(String numeroTarjeta) {
         this.numeroTarjeta = numeroTarjeta;
     }
 
