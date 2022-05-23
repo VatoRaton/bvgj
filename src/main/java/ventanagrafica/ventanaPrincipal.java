@@ -4,12 +4,11 @@
  */
 package ventanagrafica;
 
-import com.javacomp.procesosdeventa.Administrador;
-import java.io.*;
-import java.util.logging.*;
-import java.util.*;
+import java.awt.Toolkit;
 import javax.swing.*;
 import static ventanagrafica.Metodos.admins;
+import static ventanagrafica.Metodos.particulares;
+import static ventanagrafica.Metodos.empresas;
 
 /**
  *
@@ -205,6 +204,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String correo = jTextField2.getText();
         String contrasena = jTextField1.getText();
+        Runnable error =
+            (Runnable)Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.default");
         
         encontrado = false;
         if (correo.contains("javacomp")) {
@@ -216,6 +217,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                         Admin adminJF = new Admin();
                         adminJF.setVisible(true);
                     } else {
+                        if(error != null) error.run();
                         JOptionPane.showMessageDialog(null, "La contraseña"
                                 + " no coincide con la cuenta", 
                                 "Error", JOptionPane.WARNING_MESSAGE);
@@ -223,6 +225,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                 }
                 else {
                     if (!encontrado) {
+                    if(error != null) error.run();
                     JOptionPane.showMessageDialog(null, "No se encuentra una cuenta"
                         + " con el correo especificado", 
                         "Error", JOptionPane.WARNING_MESSAGE);
@@ -232,6 +235,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             }    
         } else {
             if (!encontrado) {
+                if(error != null) error.run();
                 JOptionPane.showMessageDialog(null, "No se encuentra una cuenta"
                     + " con el correo especificado", 
                     "Error", JOptionPane.WARNING_MESSAGE);
@@ -293,6 +297,10 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         for (int i = 0; i< admins.size();i++) {
             System.out.println(admins.get(i).getClave() + ";" + admins.get(i).getCorreo());
+        } for (int j = 0; j< particulares.size();j++) {
+            System.out.println(particulares.get(j).getClave() + ";" + particulares.get(j).getCorreo());
+        } for (int k = 0; k< empresas.size();k++) {
+            System.out.println(empresas.get(k).getClave() + ";" + empresas.get(k).getCorreo());
         }
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 

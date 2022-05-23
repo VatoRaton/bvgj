@@ -7,10 +7,10 @@ public class Persona {
     private String clave;
     private Tarjeta tarjetaCredito;
     private Direccion dir;
-    private int numeroTelf;
+    private String numeroTelf;
 
     public Persona(String nombre, String correo, String clave,
-            Tarjeta tarjetaCredito, Direccion dir, int numeroTelf) {
+            Tarjeta tarjetaCredito, Direccion dir, String numeroTelf) {
         this.nombre = nombre;
         this.correo = correo;
         this.clave = clave;
@@ -59,11 +59,11 @@ public class Persona {
         this.dir = dir;
     }
 
-    public int getNumeroTelf() {
+    public String getNumeroTelf() {
         return numeroTelf;
     }
 
-    public void setNumeroTelf(int numeroTelf) {
+    public void setNumeroTelf(String numeroTelf) {
         this.numeroTelf = numeroTelf;
     }
 

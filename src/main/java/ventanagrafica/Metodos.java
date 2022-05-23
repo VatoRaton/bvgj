@@ -1,6 +1,8 @@
 package ventanagrafica;
 
 import com.javacomp.procesosdeventa.Administrador;
+import com.javacomp.procesosdeventa.Particular;
+import com.javacomp.procesosdeventa.Empresa;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,8 +14,8 @@ import java.util.ArrayList;
 public class Metodos {
     
     static ArrayList<Administrador> admins = new ArrayList<Administrador>();
-    static ArrayList<Administrador> particulares = new ArrayList<Administrador>();
-    static ArrayList<Administrador> empresas = new ArrayList<Administrador>();
+    static ArrayList<Particular> particulares = new ArrayList<Administrador>();
+    static ArrayList<Empresa> empresas = new ArrayList<Administrador>();
     static Administrador adminDefault = new Administrador("admin@javacomp.com", "admin");
     
         public static void cargarDatosAdmin() {

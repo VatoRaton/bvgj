@@ -7,7 +7,7 @@ public class Particular extends Persona implements Serializable {
     private String DNI;
 
     public Particular(String DNI, String nombre, String correo, String clave,
-            Tarjeta tarjetaCredito, Direccion dir, int numeroTelf) {
+            Tarjeta tarjetaCredito, Direccion dir, String numeroTelf) {
         super(nombre, correo, clave, tarjetaCredito, dir, numeroTelf);
         this.DNI = DNI;
     }

@@ -8,7 +8,7 @@ public class Empresa extends Persona implements Serializable {
     private String web;
 
     public Empresa(String CIF, String web, String nombre, String correo,
-            String clave, Tarjeta tarjetaCredito, Direccion dir, int numeroTelf) {
+            String clave, Tarjeta tarjetaCredito, Direccion dir, String numeroTelf) {
         super(nombre, correo, clave, tarjetaCredito, dir, numeroTelf);
         this.CIF = CIF;
         this.web = web;
