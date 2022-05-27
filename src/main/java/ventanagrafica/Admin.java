@@ -648,8 +648,6 @@ public class Admin extends javax.swing.JFrame {
                 DatosAdmin.setVisible(true);
             } else if ("Particular".equals(tipoUsuario)) {
                 DatosPart.setLocationRelativeTo(null);
-                jTextField14.setText(particulares.get(indiceLista).getDir().getCodigoPostal());
-                jTextField15.setText(particulares.get(indiceLista).getDir().getCiudad());
                 jTextField5.setText(particulares.get(indiceLista).getNombre());
                 jTextField6.setText(particulares.get(indiceLista).getCorreo());
                 jTextField7.setText(particulares.get(indiceLista).getClave());
@@ -659,6 +657,8 @@ public class Admin extends javax.swing.JFrame {
                 jTextField10.setText(particulares.get(indiceLista).getTarjetaCredito().getNumeroTarjeta());
                 jTextField11.setText(particulares.get(indiceLista).getTarjetaCredito().getFechaCaducidad().format(formato));
                 jTextField12.setText(particulares.get(indiceLista).getDir().getCalle());
+                jTextField14.setText(particulares.get(indiceLista).getDir().getCodigoPostal());
+                jTextField15.setText(particulares.get(indiceLista).getDir().getCiudad());
                 jFormattedTextField2.setText(String.valueOf(particulares.get(indiceLista).getDir().getNumero()));
                 DatosPart.setVisible(true);
             } else if ("Empresa".equals(tipoUsuario)) {
