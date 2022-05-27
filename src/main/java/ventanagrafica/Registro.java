@@ -659,6 +659,7 @@ public class Registro extends javax.swing.JFrame {
             else {
                 JOptionPane.showMessageDialog(null, "Tarjeta registrada correctamente.",
                     "Registrado con éxito", JOptionPane.INFORMATION_MESSAGE);
+                jFrame1.setVisible(false);
                 jLabel20.setText(nombreNuevo);
                 jLabel21.setText(numTarjetaNueva);
                 jLabel22.setText(fechaTarjetaNueva.getDayOfMonth() + "/" + 
@@ -734,8 +735,10 @@ public class Registro extends javax.swing.JFrame {
         String telefono = jFormattedTextField1.getText();
         String nif = jTextField2.getText();
         String web = jTextField6.getText();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("d/M/yyyy");
+        LocalDate fechaVacia = LocalDate.parse("1/1/1970", formato);
         Direccion direccion = new Direccion("",0,"direccionvacia","");
-        Tarjeta tarjeta = null;
+        Tarjeta tarjeta = new Tarjeta("","", fechaVacia);
         System.out.println(jLabel23.getText());
         //si hemos añadido la dirección la registramos en el cliente//
         if (!(jLabel23.getText().isEmpty())) {
@@ -755,7 +758,6 @@ public class Registro extends javax.swing.JFrame {
             String tarjetaCredito = jLabel21.getText();
             //se saca la fecha de caducidad mediante el formato del text//
             String textoFecha = jLabel22.getText();
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("d/MM/yyyy");
             LocalDate fechaCaducidad = LocalDate.parse(textoFecha, formato);
             tarjeta.setNombre(nombreTitular);
             tarjeta.setNumeroTarjeta(tarjetaCredito);
@@ -793,7 +795,7 @@ public class Registro extends javax.swing.JFrame {
             if(error != null) error.run();
             JOptionPane.showMessageDialog(null, "Introduzca una dirección.",
                 "Error", JOptionPane.WARNING_MESSAGE);
-        } else if (tarjeta == null) {
+        } else if (tarjeta.getFechaCaducidad().equals(fechaVacia)) {
             if(error != null) error.run();
             JOptionPane.showMessageDialog(null, "Introduzca una tarjeta.",
                 "Error", JOptionPane.WARNING_MESSAGE);
@@ -802,12 +804,14 @@ public class Registro extends javax.swing.JFrame {
             if (tipoCliente == 1) {
                 Particular nuevoParticular = new Particular(nif, nombre, correo, contrasenna, tarjeta, direccion, telefono);
                 particulares.add(nuevoParticular);
+                Metodos.guardarDatos();
             JOptionPane.showMessageDialog(null, "Se ha añadido un particular.",
                 "Éxito", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
             } else if (tipoCliente == 2) {
                 Empresa nuevaEmpresa = new Empresa(nif, web, nombre, correo, contrasenna, tarjeta, direccion, telefono);
                 empresas.add(nuevaEmpresa);
+                Metodos.guardarDatos();
             JOptionPane.showMessageDialog(null, "Se ha añadido una empresa.",
                 "Éxito", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);

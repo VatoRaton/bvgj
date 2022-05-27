@@ -1,8 +1,9 @@
 package com.javacomp.procesosdeventa;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Tarjeta {
+public class Tarjeta implements Serializable {
     
     private String nombre;
     private String numeroTarjeta;

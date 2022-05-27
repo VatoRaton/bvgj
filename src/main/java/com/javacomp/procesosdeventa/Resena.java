@@ -1,8 +1,9 @@
 package com.javacomp.procesosdeventa;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Resena {
+public class Resena implements Serializable {
     private int calificacion;
     private String comentario;
     private LocalDate fechaResena;

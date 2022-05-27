@@ -1,10 +1,11 @@
 package com.javacomp.procesosdeventa;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
-public class Producto {
+public class Producto implements Serializable {
     
     private String titulo;
     private String caracteristicas;
