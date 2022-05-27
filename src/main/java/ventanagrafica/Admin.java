@@ -5,7 +5,13 @@
 package ventanagrafica;
 
 import com.javacomp.procesosdeventa.Administrador;
+import com.javacomp.procesosdeventa.Direccion;
+import com.javacomp.procesosdeventa.Particular;
+import com.javacomp.procesosdeventa.Tarjeta;
 import java.awt.Toolkit;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import static ventanagrafica.Metodos.admins;
@@ -46,7 +52,7 @@ public class Admin extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jButton7 = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        DatosUsuario = new javax.swing.JFrame();
+        DatosAdmin = new javax.swing.JFrame();
         datosAdmin = new javax.swing.JPanel();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
@@ -60,6 +66,9 @@ public class Admin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
+        datosEmpresa = new javax.swing.JPanel();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        DatosPart = new javax.swing.JFrame();
         datosParticular = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
@@ -77,7 +86,6 @@ public class Admin extends javax.swing.JFrame {
         jTextField11 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
         jTextField14 = new javax.swing.JTextField();
         jTextField15 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -89,8 +97,8 @@ public class Admin extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
-        datosEmpresa = new javax.swing.JPanel();
-        buttonGroup2 = new javax.swing.ButtonGroup();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        DatosEmp = new javax.swing.JFrame();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -203,11 +211,19 @@ public class Admin extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
+        DatosAdmin.setResizable(false);
+        DatosAdmin.setSize(new java.awt.Dimension(233, 193));
+
         jLabel6.setText("Correo:");
 
         jLabel7.setText("Clave:");
 
         jButton9.setText("Regresar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Guardar cambios");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -225,13 +241,13 @@ public class Admin extends javax.swing.JFrame {
                 .addGroup(datosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
-                    .addGroup(datosAdminLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosAdminLayout.createSequentialGroup()
                         .addComponent(jButton10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton9))
                     .addComponent(jTextField4)
                     .addComponent(jTextField3))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
         datosAdminLayout.setVerticalGroup(
             datosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,32 +260,22 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(datosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton10)
                     .addComponent(jButton9))
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout DatosUsuarioLayout = new javax.swing.GroupLayout(DatosUsuario.getContentPane());
-        DatosUsuario.getContentPane().setLayout(DatosUsuarioLayout);
-        DatosUsuarioLayout.setHorizontalGroup(
-            DatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(DatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(DatosUsuarioLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(datosAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+        javax.swing.GroupLayout DatosAdminLayout = new javax.swing.GroupLayout(DatosAdmin.getContentPane());
+        DatosAdmin.getContentPane().setLayout(DatosAdminLayout);
+        DatosAdminLayout.setHorizontalGroup(
+            DatosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(datosAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        DatosUsuarioLayout.setVerticalGroup(
-            DatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(DatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(DatosUsuarioLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(datosAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+        DatosAdminLayout.setVerticalGroup(
+            DatosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(datosAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         NuevoAdmin.setTitle("Añadir administrador");
@@ -316,6 +322,20 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(jButton8)
                 .addGap(27, 27, 27))
         );
+
+        javax.swing.GroupLayout datosEmpresaLayout = new javax.swing.GroupLayout(datosEmpresa);
+        datosEmpresa.setLayout(datosEmpresaLayout);
+        datosEmpresaLayout.setHorizontalGroup(
+            datosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        datosEmpresaLayout.setVerticalGroup(
+            datosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        DatosPart.setResizable(false);
+        DatosPart.setSize(new java.awt.Dimension(543, 364));
 
         jLabel8.setText("Nombre:");
 
@@ -364,6 +384,11 @@ public class Admin extends javax.swing.JFrame {
         });
 
         jButton12.setText("Regresar");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout datosParticularLayout = new javax.swing.GroupLayout(datosParticular);
         datosParticular.setLayout(datosParticularLayout);
@@ -390,13 +415,13 @@ public class Admin extends javax.swing.JFrame {
                         .addGroup(datosParticularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel14)
                             .addComponent(jLabel13)
-                            .addComponent(jTextField9)
+                            .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                             .addComponent(jTextField10)
                             .addComponent(jTextField11)
                             .addComponent(jTextField12)
-                            .addComponent(jTextField13)
                             .addComponent(jTextField14)
-                            .addComponent(jTextField15, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                            .addComponent(jTextField15)
+                            .addComponent(jFormattedTextField2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(datosParticularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
@@ -411,7 +436,8 @@ public class Admin extends javax.swing.JFrame {
                         .addComponent(jButton11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton12)
-                        .addGap(29, 29, 29))))
+                        .addGap(29, 29, 29)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         datosParticularLayout.setVerticalGroup(
             datosParticularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -460,8 +486,8 @@ public class Admin extends javax.swing.JFrame {
                             .addComponent(jLabel18))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(datosParticularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19))
+                            .addComponent(jLabel19)
+                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(datosParticularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -477,15 +503,36 @@ public class Admin extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
-        javax.swing.GroupLayout datosEmpresaLayout = new javax.swing.GroupLayout(datosEmpresa);
-        datosEmpresa.setLayout(datosEmpresaLayout);
-        datosEmpresaLayout.setHorizontalGroup(
-            datosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        javax.swing.GroupLayout DatosPartLayout = new javax.swing.GroupLayout(DatosPart.getContentPane());
+        DatosPart.getContentPane().setLayout(DatosPartLayout);
+        DatosPartLayout.setHorizontalGroup(
+            DatosPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 543, Short.MAX_VALUE)
+            .addGroup(DatosPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DatosPartLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(datosParticular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-        datosEmpresaLayout.setVerticalGroup(
-            datosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        DatosPartLayout.setVerticalGroup(
+            DatosPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 364, Short.MAX_VALUE)
+            .addGroup(DatosPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DatosPartLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(datosParticular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout DatosEmpLayout = new javax.swing.GroupLayout(DatosEmp.getContentPane());
+        DatosEmp.getContentPane().setLayout(DatosEmpLayout);
+        DatosEmpLayout.setHorizontalGroup(
+            DatosEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        DatosEmpLayout.setVerticalGroup(
+            DatosEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -560,6 +607,7 @@ public class Admin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    DateTimeFormatter formato = DateTimeFormatter.ofPattern("d/M/yyyy");
     DefaultListModel<String> modelo = new DefaultListModel<>();
     String tipoUsuario = "";
     int indiceLista = -1;
@@ -568,6 +616,7 @@ public class Admin extends javax.swing.JFrame {
             
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
+        jFrame1.setLocationRelativeTo(null);
         jFrame1.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -592,7 +641,34 @@ public class Admin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un usuario.", 
                     "Error", JOptionPane.WARNING_MESSAGE);
         } else {
-            DatosUsuario.setVisible(true);
+            if ("Administrador".equals(tipoUsuario)) {
+                DatosAdmin.setLocationRelativeTo(null);
+                jTextField3.setText(admins.get(indiceLista).getCorreo());
+                jTextField4.setText(admins.get(indiceLista).getClave());
+                DatosAdmin.setVisible(true);
+            } else if ("Particular".equals(tipoUsuario)) {
+                DatosPart.setLocationRelativeTo(null);
+                jTextField14.setText(particulares.get(indiceLista).getDir().getCodigoPostal());
+                jTextField15.setText(particulares.get(indiceLista).getDir().getCiudad());
+                jTextField5.setText(particulares.get(indiceLista).getNombre());
+                jTextField6.setText(particulares.get(indiceLista).getCorreo());
+                jTextField7.setText(particulares.get(indiceLista).getClave());
+                jTextField8.setText(particulares.get(indiceLista).getDNI());
+                jFormattedTextField1.setText(particulares.get(indiceLista).getNumeroTelf());
+                jTextField9.setText(particulares.get(indiceLista).getTarjetaCredito().getNombre());
+                jTextField10.setText(particulares.get(indiceLista).getTarjetaCredito().getNumeroTarjeta());
+                jTextField11.setText(particulares.get(indiceLista).getTarjetaCredito().getFechaCaducidad().format(formato));
+                jTextField12.setText(particulares.get(indiceLista).getDir().getCalle());
+                jFormattedTextField2.setText(String.valueOf(particulares.get(indiceLista).getDir().getNumero()));
+                DatosPart.setVisible(true);
+            } else if ("Empresa".equals(tipoUsuario)) {
+                DatosEmp.setLocationRelativeTo(null);
+                DatosEmp.setVisible(true);
+            } else {
+                if(error != null) error.run();
+                JOptionPane.showMessageDialog(null, "Seleccione un tipo de usuario.", 
+                    "Error", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -646,7 +722,19 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+        if (jTextField3.getText().isEmpty()) {
+            if(error != null) error.run();
+            JOptionPane.showMessageDialog(null, "Introduce un correo", "Error"
+            ,JOptionPane.WARNING_MESSAGE);
+        } else if (jTextField4.getText().isEmpty()) {
+            if(error != null) error.run();
+            JOptionPane.showMessageDialog(null, "Introduce una clave", "Error"
+            ,JOptionPane.WARNING_MESSAGE);
+        } else {
+            Administrador nuevoAdmin = new Administrador(jTextField3.getText(), jTextField4.getText());
+            admins.set(indiceLista, nuevoAdmin);
+            Metodos.guardarDatos();
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
@@ -663,34 +751,65 @@ public class Admin extends javax.swing.JFrame {
         String numeroT = jTextField10.getText();
         String fechaTt = jTextField11.getText();
         String calleD = jTextField12.getText();
-        int numeroD = Integer.parseInt(jTextField13.getText());
+        String numeroDt = jFormattedTextField2.getText();
         String codigoPostalD = jTextField14.getText();
         String ciudadD = jTextField15.getText();
-                if (!(jLabel23.getText().isEmpty())) {
-            System.out.println(jLabel23.getText());
-            String calle = jLabel23.getText();
-            int numero = Integer.parseInt(jLabel24.getText());
-            String codigoPostal = jLabel20.getText();
-            String ciudad = jLabel21.getText();
-            direccion.setCalle(calle);
-            direccion.setNumero(numero);
-            direccion.setCodigoPostal(codigoPostal);
-            direccion.setCiudad(ciudad);
-        }
-        //si hemos añadido la tarjeta la registramos en el cliente//
-        if (!(jLabel20.getText().isEmpty())) {
-            String nombreTitular = jLabel20.getText();
-            String tarjetaCredito = jLabel21.getText();
-            //se saca la fecha de caducidad mediante el formato del text//
-            String textoFecha = jLabel22.getText();
-            LocalDate fechaCaducidad = LocalDate.parse(textoFecha, formato);
-            tarjeta.setNombre(nombreTitular);
-            tarjeta.setNumeroTarjeta(tarjetaCredito);
-            tarjeta.setFechaCaducidad(fechaCaducidad);
-        }
+        int numeroD = -1;
+        Direccion direccion = new Direccion("", -1, "direccionvacia", "");
+        LocalDate fechaVacia = LocalDate.parse("1/1/1970", formato);
+        Tarjeta tarjeta = new Tarjeta("","", fechaVacia);
         Runnable error =
             (Runnable)Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.default");
-        //comprueba que los datos están introducidos y tira un error si no lo están//
+        /** se forma la dirección si existen datos**/
+        if ((calleD.isEmpty())) {
+            if(error != null) error.run();
+            JOptionPane.showMessageDialog(null, "Introduzca una calle.",
+                "Error", JOptionPane.WARNING_MESSAGE);
+        } else if ((numeroDt.isEmpty())) {
+            if(error != null) error.run();
+            JOptionPane.showMessageDialog(null, "Introduzca un número de calle.",
+                "Error", JOptionPane.WARNING_MESSAGE);
+        } else if ((codigoPostalD.isEmpty())) {
+            if(error != null) error.run();
+            JOptionPane.showMessageDialog(null, "Introduzca un código postal.",
+                "Error", JOptionPane.WARNING_MESSAGE);
+        } else if ((ciudadD.isEmpty())) {
+            if(error != null) error.run();
+            JOptionPane.showMessageDialog(null, "Introduzca una ciudad.",
+                "Error", JOptionPane.WARNING_MESSAGE);    
+        } else {
+            numeroD = Integer.parseInt(numeroDt);
+            direccion.setCalle(calleD); 
+            direccion.setNumero(numeroD); 
+            direccion.setCodigoPostal(codigoPostalD); 
+            direccion.setCiudad(ciudadD);
+        }
+        /** se forma la tarjeta si existen datos**/
+       if ((nombreT.isEmpty())) {
+            if(error != null) error.run();
+            JOptionPane.showMessageDialog(null, "Introduzca un nombre de titular.",
+                "Error", JOptionPane.WARNING_MESSAGE);
+        } else if ((numeroT.isEmpty())) {
+            if(error != null) error.run();
+            JOptionPane.showMessageDialog(null, "Introduzca un número de tarjeta.",
+                "Error", JOptionPane.WARNING_MESSAGE);
+        } else if ((fechaTt.isEmpty())) {
+            if(error != null) error.run();
+            JOptionPane.showMessageDialog(null, "Introduzca una fecha.",
+                "Error", JOptionPane.WARNING_MESSAGE);    
+        } else {
+            try {
+                LocalDate nuevaFecha = LocalDate.parse(fechaTt, formato);
+                tarjeta.setNombre(nombreT);
+                tarjeta.setNumeroTarjeta(numeroT);
+                tarjeta.setFechaCaducidad(nuevaFecha);
+            } catch (DateTimeParseException ex) {
+                if(error != null) error.run();
+                JOptionPane.showMessageDialog(null, "Introduzca una fecha en formato (DD/MM/AAAA).",
+                    "Error", JOptionPane.WARNING_MESSAGE); 
+            }
+        }
+        /**comprueba que los datos están introducidos y tira un error si no lo están**/
         if (nombre.isEmpty()) {
             if(error != null) error.run();
             JOptionPane.showMessageDialog(null, "Introduzca un nombre.",
@@ -699,7 +818,7 @@ public class Admin extends javax.swing.JFrame {
             if(error != null) error.run();
             JOptionPane.showMessageDialog(null, "Introduzca un correo.",
                     "Error", JOptionPane.WARNING_MESSAGE);
-        } else if (contrasenna.isEmpty()) {
+        } else if (clave.isEmpty()) {
             if(error != null) error.run();
             JOptionPane.showMessageDialog(null, "Introduzca una contraseña.",
                 "Error", JOptionPane.WARNING_MESSAGE);
@@ -707,15 +826,10 @@ public class Admin extends javax.swing.JFrame {
             if(error != null) error.run();
             JOptionPane.showMessageDialog(null, "Introduzca un teléfono.",
             "Error", JOptionPane.WARNING_MESSAGE);
-        } else if (nif.isEmpty()) {
+        } else if (dni.isEmpty()) {
             if(error != null) error.run();
-            if (tipoCliente == 1) {
-                JOptionPane.showMessageDialog(null, "Introduzca un DNI.",
-                    "Error", JOptionPane.WARNING_MESSAGE); 
-            } else if (tipoCliente == 2) {
-                JOptionPane.showMessageDialog(null, "Introduzca un CIF.",
-                    "Error", JOptionPane.WARNING_MESSAGE); 
-            }
+            JOptionPane.showMessageDialog(null, "Introduzca un DNI.",
+                "Error", JOptionPane.WARNING_MESSAGE); 
         } else if (direccion.getCodigoPostal().equals("direccionvacia")) {
             if(error != null) error.run();
             JOptionPane.showMessageDialog(null, "Introduzca una dirección.",
@@ -725,25 +839,22 @@ public class Admin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Introduzca una tarjeta.",
                 "Error", JOptionPane.WARNING_MESSAGE);
         } else {
-            //se detecta el tipo de cliente y se añade a la lista de clientes//
-            if (tipoCliente == 1) {
-                Particular nuevoParticular = new Particular(nif, nombre, correo, contrasenna, tarjeta, direccion, telefono);
-                particulares.add(nuevoParticular);
-                Metodos.guardarDatos();
-            JOptionPane.showMessageDialog(null, "Se ha añadido un particular.",
+            Particular nuevoParticular = new Particular(dni, nombre, correo, clave, tarjeta, direccion, telefono);
+            particulares.set(indiceLista, nuevoParticular);
+            Metodos.guardarDatos();
+            JOptionPane.showMessageDialog(null, "Se ha modificado un particular.",
                 "Éxito", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
-            } else if (tipoCliente == 2) {
-                Empresa nuevaEmpresa = new Empresa(nif, web, nombre, correo, contrasenna, tarjeta, direccion, telefono);
-                empresas.add(nuevaEmpresa);
-                Metodos.guardarDatos();
-            JOptionPane.showMessageDialog(null, "Se ha añadido una empresa.",
-                "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            this.setVisible(false);
-            }
-        }
-    }                 
+            }                
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        DatosPart.setVisible(false);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        DatosAdmin.setVisible(false);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -781,7 +892,9 @@ public class Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFrame DatosUsuario;
+    private javax.swing.JFrame DatosAdmin;
+    private javax.swing.JFrame DatosEmp;
+    private javax.swing.JFrame DatosPart;
     private javax.swing.JFrame NuevoAdmin;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -801,6 +914,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -833,7 +947,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField2;
